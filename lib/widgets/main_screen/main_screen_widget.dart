@@ -15,17 +15,7 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    MovieListWidget(),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
-  ];
+
 
   void _onItemTapped(int index) {
     setState(() {
@@ -37,8 +27,19 @@ class _MainScreenWidgetState extends State<MainScreenWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('1'),),
-    body: Center(
-    child: _widgetOptions.elementAt(_selectedIndex),),
+    body: IndexedStack(
+      index: _selectedIndex,
+      children: [
+        Text(
+          'Index 0: Home',
+          style: optionStyle,
+        ),
+        MovieListWidget(),
+        Text(
+          'Index 2: School',
+          style: optionStyle,
+        ),
+    ],),
     bottomNavigationBar: BottomNavigationBar(
     items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
